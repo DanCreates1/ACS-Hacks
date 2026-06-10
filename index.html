@@ -177,7 +177,6 @@ nav {
   position: relative; z-index: 2;
 }
 
-/* handwritten annotations floating on the sides */
 .hero-annotation {
   font-family: 'Caveat', cursive; color: var(--purple-bright);
   font-size: 1.1rem; position: absolute;
@@ -414,6 +413,10 @@ section {
   display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; margin-top: 40px;
 }
 
+.prizes-grid-2 {
+  display: grid; grid-template-columns: repeat(2,1fr); gap: 18px; margin-top: 18px;
+}
+
 .prize-card {
   border-radius: 16px; padding: 32px 24px; border: 1px solid var(--border);
   background: var(--white); transition: transform 0.2s, box-shadow 0.2s;
@@ -431,6 +434,24 @@ section {
 
 .prize-card.first:hover { box-shadow: 0 12px 48px rgba(61,26,120,0.35); }
 
+.prize-card.special {
+  background: var(--purple-ghost);
+  border-color: var(--purple-light);
+}
+
+.prize-badge {
+  display: inline-block;
+  background: var(--purple);
+  color: var(--white);
+  font-family: 'Space Mono', monospace;
+  font-size: 0.58rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: 100px;
+  margin-bottom: 14px;
+}
+
 .prize-place {
   font-family: 'Space Mono', monospace; font-size: 0.68rem;
   letter-spacing: 0.2em; text-transform: uppercase;
@@ -447,25 +468,37 @@ section {
 }
 
 .prize-card.first .prize-title { color: var(--white); }
+.prize-card.special .prize-title { color: var(--purple-deep); }
 
 .prize-amount {
   font-family: 'Dela Gothic One', sans-serif; font-size: 2rem;
-  color: var(--purple-deep); margin-bottom: 16px;
+  color: var(--purple-deep); margin-bottom: 16px; line-height: 1.2;
 }
 
 .prize-card.first .prize-amount { color: var(--white); }
+.prize-card.special .prize-amount { font-size: 1.4rem; color: var(--purple-mid); }
 
 .prize-perks { list-style: none; display: flex; flex-direction: column; gap: 6px; }
 
 .prize-perks li {
   font-size: 0.85rem; color: var(--muted);
-  display: flex; align-items: center; gap: 8px;
+  display: flex; align-items: flex-start; gap: 8px;
 }
 
 .prize-card.first .prize-perks li { color: rgba(255,255,255,0.7); }
+.prize-card.special .prize-perks li { color: var(--muted); }
 
 .prize-perks li::before {
   content: '—'; color: var(--purple-light); font-size: 0.75rem;
+  flex-shrink: 0; margin-top: 2px;
+}
+
+.prize-highlight {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: rgba(124,77,219,0.12); color: var(--purple);
+  font-family: 'Space Mono', monospace; font-size: 0.65rem;
+  letter-spacing: 0.08em; padding: 5px 10px; border-radius: 6px;
+  margin-top: 10px; font-weight: 700;
 }
 
 /* ═══ SPONSORS ═══ */
@@ -654,6 +687,7 @@ footer {
   .about-visual { display: none; }
   .schedule-days { grid-template-columns: 1fr; }
   .prizes-grid { grid-template-columns: 1fr; }
+  .prizes-grid-2 { grid-template-columns: 1fr; }
   footer { flex-direction: column; gap: 20px; text-align: center; }
   .footer-left { flex-direction: column; }
   .footer-right { justify-content: center; }
@@ -742,7 +776,7 @@ footer {
     <h2 class="section-title">Build Something<br>That Matters</h2>
     <p class="section-desc">AssumptionHacks is a one-day after-school hackathon where students come together to design, build, and present projects that solve real problems. No experience required. Just curiosity, creativity, and a willingness to try.</p>
     <br>
-    <p class="section-desc">You’ll have access to mentors, workshops, food and drinks each day, and a chance to compete for 1st, 2nd, and 3rd place prizes. Teams can have up to 3 people, and solo builders are welcome too.</p>
+    <p class="section-desc">You'll have access to mentors, workshops, food and drinks each day, and a chance to compete for 1st, 2nd, and 3rd place prizes. Teams can have up to 3 people, and solo builders are welcome too.</p>
   </div>
   <div class="about-visual reveal">
     <div class="about-card c1">
@@ -781,7 +815,7 @@ footer {
         <div class="event-row"><span class="event-time">7:30 PM</span><div><div class="event-name">Submission Deadline</div><div class="event-note">Projects are locked in for judging</div></div></div>
         <div class="event-row"><span class="event-time">7:45 PM</span><div><div class="event-name">Project Expo + Judging</div><div class="event-note">Show your work and answer judge questions</div></div></div>
         <div class="event-row"><span class="event-time">8:45 PM</span><div><div class="event-name">Awards Ceremony</div><div class="event-note">1st, 2nd, and 3rd place winners announced</div></div></div>
-        <div class="event-row"><span class="event-time">9:00 PM</span><div><div class="event-name">That’s a Wrap</div><div class="event-note">Take photos, grab merch, and head out</div></div></div>
+        <div class="event-row"><span class="event-time">9:00 PM</span><div><div class="event-name">That's a Wrap</div><div class="event-note">Take photos, grab merch, and head out</div></div></div>
       </div>
     </div>
   </div>
@@ -793,30 +827,79 @@ footer {
   <div class="reveal">
     <p class="section-label">^ what you're competing for</p>
     <h2 class="section-title">Prizes</h2>
-    <p class="section-desc">The top projects take home prizes, sponsor swag, and serious bragging rights. Final prize details may grow as more sponsors come on board.</p>
+    <p class="section-desc">5 prizes across overall rankings and special categories. Top projects take home prizes, sponsor swag, and serious bragging rights.</p>
   </div>
+
+  <!-- Overall: 1st / 2nd / 3rd -->
   <div class="prizes-grid reveal" style="transition-delay:0.15s">
+
     <div class="prize-card first">
       <div class="prize-place">1st Place</div>
       <div class="prize-medal">🥇</div>
-      <div class="prize-title">Grand Prize</div>
-      <div class="prize-amount">TBA</div>
-      <ul class="prize-perks"><li>Top prize package for the winning team</li><li>Certificates + merch</li><li>Sponsor swag and recognition</li><li>Featured on our socials</li></ul>
+      <div class="prize-title">Best Overall Project</div>
+      <div class="prize-amount" style="font-size:1.3rem">4 Laptops<br><span style="font-size:0.85rem;opacity:0.75;font-family:-apple-system,sans-serif;font-weight:400">~$1,000 value</span></div>
+      <ul class="prize-perks">
+        <li>Strongest overall project at ACS Hacks</li>
+        <li>Judged on creativity, effort, design &amp; presentation</li>
+        <li>Certificates + merch</li>
+        <li>Featured on our socials</li>
+      </ul>
     </div>
+
     <div class="prize-card">
       <div class="prize-place">2nd Place</div>
       <div class="prize-medal">🥈</div>
       <div class="prize-title">Runner-Up</div>
       <div class="prize-amount">TBA</div>
-      <ul class="prize-perks"><li>Prize package for the team</li><li>Certificates</li><li>Sponsor swag</li></ul>
+      <ul class="prize-perks">
+        <li>Second strongest overall project</li>
+        <li>Certificates + merch</li>
+        <li>Sponsor swag</li>
+      </ul>
     </div>
+
     <div class="prize-card">
       <div class="prize-place">3rd Place</div>
       <div class="prize-medal">🥉</div>
       <div class="prize-title">Third Place</div>
       <div class="prize-amount">TBA</div>
-      <ul class="prize-perks"><li>Prize package for the team</li><li>Certificates</li><li>Sponsor swag</li></ul>
+      <ul class="prize-perks">
+        <li>Third strongest overall project</li>
+        <li>Certificates + merch</li>
+        <li>Sponsor swag</li>
+      </ul>
     </div>
+
+  </div>
+
+  <!-- Special categories: Gemini + Finance -->
+  <div class="prizes-grid-2 reveal" style="transition-delay:0.25s">
+
+    <div class="prize-card special">
+      <div class="prize-badge">Special Category</div>
+      <div class="prize-medal">🤖</div>
+      <div class="prize-title">Best Use of Gemini API</div>
+      <div class="prize-amount">TBA</div>
+      <ul class="prize-perks">
+        <li>Best integration of Gemini or AI tools in a project</li>
+        <li>Must explain how AI improved what you built</li>
+        <li>Certificates + sponsor swag</li>
+      </ul>
+    </div>
+
+    <div class="prize-card special">
+      <div class="prize-badge">Special Category</div>
+      <div class="prize-medal">📈</div>
+      <div class="prize-title">Best Finance Hack</div>
+      <div class="prize-amount">TBA</div>
+      <ul class="prize-perks">
+        <li>Strongest finance-focused project — modeling, forecasting, market analysis, or risk tools</li>
+        <li>Must show clear financial thinking and practical approach</li>
+        <li>Certificates + sponsor swag</li>
+      </ul>
+      <div class="prize-highlight">⚡ Internship consideration at Blackmark Dominion</div>
+    </div>
+
   </div>
 </section>
 
@@ -826,7 +909,7 @@ footer {
   <div class="reveal">
     <p class="section-label">^ who's making this possible</p>
     <h2 class="section-title">Sponsors</h2>
-    <p class="section-desc">AssumptionHacks is powered by companies and organizations who believe in the next generation of builders. We’re currently looking for cash and in-kind sponsors for food, prizes, merch, mentors, and workshops, and sponsors will be recognized on event materials, merch, and online.
+    <p class="section-desc">AssumptionHacks is powered by companies and organizations who believe in the next generation of builders. We're currently looking for cash and in-kind sponsors for food, prizes, merch, mentors, and workshops, and sponsors will be recognized on event materials, merch, and online.
       <a href="mailto:assumptionhacks@gmail.com" style="color:var(--purple-bright);text-decoration:underline;text-decoration-style:wavy"> Reach out →</a>
     </p>
   </div>
@@ -847,12 +930,13 @@ footer {
   </div>
   <div class="faq-list reveal" style="transition-delay:0.1s">
     <div class="faq-item"><div class="faq-q">Who can participate? <div class="faq-arrow"></div></div><div class="faq-a">Any high school student can apply. You do not need to be from Assumption, but spots are limited and preference may go to students who complete the form early.</div></div>
-    <div class="faq-item"><div class="faq-q">Do I need to know how to code? <div class="faq-arrow"></div></div><div class="faq-a">No. Beginners are welcome. We’re planning beginner-friendly workshops, mentor support, and time to learn as you build.</div></div>
+    <div class="faq-item"><div class="faq-q">Do I need to know how to code? <div class="faq-arrow"></div></div><div class="faq-a">No. Beginners are welcome. We're planning beginner-friendly workshops, mentor support, and time to learn as you build.</div></div>
     <div class="faq-item"><div class="faq-q">How do teams work? <div class="faq-arrow"></div></div><div class="faq-a">You can work solo or in a team of up to 3 people. If you do not have a team yet, there will be time to meet people and form one at the start.</div></div>
     <div class="faq-item"><div class="faq-q">What should I bring? <div class="faq-arrow"></div></div><div class="faq-a">Bring your laptop, charger, and anything specific you want for your project. Food and drinks will be provided each day.</div></div>
     <div class="faq-item"><div class="faq-q">When does the event run? <div class="faq-arrow"></div></div><div class="faq-a">The current plan is Wednesday, June 10, 2026, from 2:30 PM to 9:00 PM. It is an after-school event, not an overnight event.</div></div>
     <div class="faq-item"><div class="faq-q">Is it free to attend? <div class="faq-arrow"></div></div><div class="faq-a">Yes. The event is completely free for students thanks to sponsors and community support.</div></div>
-  </div></section>
+  </div>
+</section>
 
 <section id="register" style="text-align:center;padding:80px 40px">
   <div class="reveal">
@@ -909,10 +993,6 @@ function updateCountdown() {
   document.getElementById('cd-secs').textContent = String(Math.floor((diff%6e4)/1e3)).padStart(2,'0');
 }
 updateCountdown(); setInterval(updateCountdown, 1000);
-
-new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-}, { threshold: 0.1 }).observe(document.querySelector('.reveal'));
 
 document.querySelectorAll('.reveal').forEach(el => {
   new IntersectionObserver(entries => {
