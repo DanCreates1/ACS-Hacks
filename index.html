@@ -534,6 +534,55 @@ section {
 .sponsor-slot.silver { width: 155px; height: 58px; }
 .sponsor-slot.bronze { width: 125px; height: 48px; font-size: 0.62rem; }
 
+/* ═══ SPONSOR CARDS ═══ */
+.sponsor-card {
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  transition: transform 0.15s, box-shadow 0.15s;
+  text-align: center; padding: 0 20px; font-weight: 700;
+}
+
+.sponsor-card.partner {
+  height: 84px; min-width: 210px;
+  background: var(--purple); color: var(--white);
+  font-family: 'Dela Gothic One', sans-serif; font-size: 1.05rem;
+  letter-spacing: 0.02em;
+  box-shadow: 0 4px 20px rgba(61,26,120,0.22);
+}
+
+.sponsor-card.partner:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(61,26,120,0.32);
+}
+
+.sponsor-card.gold-card {
+  height: 68px; min-width: 185px;
+  background: var(--purple-ghost); color: var(--purple);
+  border: 1.5px solid var(--purple-bright);
+  font-family: 'Dela Gothic One', sans-serif; font-size: 0.95rem;
+}
+
+.sponsor-card.gold-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(61,26,120,0.1);
+}
+
+.sponsor-card.silver-card {
+  height: 60px; min-width: 155px;
+  background: var(--white); color: var(--purple-mid);
+  border: 1.5px solid var(--purple-light);
+  font-size: 0.9rem;
+}
+
+.sponsor-card.bronze-card {
+  height: 52px; min-width: 210px;
+  background: var(--white); color: var(--muted);
+  border: 1.5px solid var(--border);
+  font-size: 0.82rem;
+}
+
+.tier-label.partner-tier { color: var(--purple); }
+
 /* ═══ FAQ ═══ */
 .faq-list {
   display: flex; flex-direction: column; gap: 6px;
@@ -909,15 +958,40 @@ footer {
   <div class="reveal">
     <p class="section-label">^ who's making this possible</p>
     <h2 class="section-title">Sponsors</h2>
-    <p class="section-desc">AssumptionHacks is powered by companies and organizations who believe in the next generation of builders. We're currently looking for cash and in-kind sponsors for food, prizes, merch, mentors, and workshops, and sponsors will be recognized on event materials, merch, and online.
-      <a href="mailto:assumptionhacks@gmail.com" style="color:var(--purple-bright);text-decoration:underline;text-decoration-style:wavy"> Reach out →</a>
-    </p>
+    <p class="section-desc">AssumptionHacks is powered by these companies and organizations who believe in the next generation of builders.</p>
   </div>
   <div class="sponsor-tiers reveal" style="transition-delay:0.15s">
-    <div><div class="tier-label gold-tier">Platinum · $1000+</div><div class="sponsor-slots"><a href="mailto:assumptionhacks@gmail.com" class="sponsor-slot title">Platinum Sponsor</a></div></div>
-    <div><div class="tier-label">Gold · $500+</div><div class="sponsor-slots"><a href="mailto:assumptionhacks@gmail.com" class="sponsor-slot gold">Gold Sponsor</a><a href="mailto:assumptionhacks@gmail.com" class="sponsor-slot gold">Gold Sponsor</a><a href="mailto:assumptionhacks@gmail.com" class="sponsor-slot gold">Gold Sponsor</a></div></div>
-    <div><div class="tier-label">Silver · $250+</div><div class="sponsor-slots"><a href="mailto:assumptionhacks@gmail.com" class="sponsor-slot silver">Silver Sponsor</a><a href="mailto:assumptionhacks@gmail.com" class="sponsor-slot silver">Silver Sponsor</a><a href="mailto:assumptionhacks@gmail.com" class="sponsor-slot silver">Silver Sponsor</a><a href="mailto:assumptionhacks@gmail.com" class="sponsor-slot silver">Silver Sponsor</a></div></div>
-    <div><div class="tier-label">Bronze · $100+</div><div class="sponsor-slots"><a href="mailto:assumptionhacks@gmail.com" class="sponsor-slot bronze">Bronze Sponsor</a><a href="mailto:assumptionhacks@gmail.com" class="sponsor-slot bronze">Bronze Sponsor</a><a href="mailto:assumptionhacks@gmail.com" class="sponsor-slot bronze">Bronze Sponsor</a><a href="mailto:assumptionhacks@gmail.com" class="sponsor-slot bronze">Bronze Sponsor</a><a href="mailto:assumptionhacks@gmail.com" class="sponsor-slot bronze">Bronze Sponsor</a></div></div>
+
+    <div>
+      <div class="tier-label partner-tier">Partners</div>
+      <div class="sponsor-slots">
+        <div class="sponsor-card partner">MyPath2Tech</div>
+        <div class="sponsor-card partner">MLH</div>
+      </div>
+    </div>
+
+    <div>
+      <div class="tier-label gold-tier">Gold</div>
+      <div class="sponsor-slots">
+        <div class="sponsor-card gold-card">.XYZ</div>
+        <div class="sponsor-card gold-card">Blackmark Dominion</div>
+      </div>
+    </div>
+
+    <div>
+      <div class="tier-label">Silver</div>
+      <div class="sponsor-slots">
+        <div class="sponsor-card silver-card">OAI</div>
+      </div>
+    </div>
+
+    <div>
+      <div class="tier-label">Bronze</div>
+      <div class="sponsor-slots">
+        <div class="sponsor-card bronze-card">Kent &amp; Essex Insurance</div>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -944,24 +1018,6 @@ footer {
     <h2 class="section-title" style="font-size:clamp(2rem,5vw,3.5rem)">Ready to Build?</h2>
     <p class="section-desc" style="margin:20px auto 36px;max-width:500px;text-align:center">Applications are open. Spots are limited, the event is free, and every participant gets food, support, and a real chance to build something meaningful.</p>
     <a href="https://docs.google.com/forms/d/e/1FAIpQLSfx6x9WN6mffWDqM1L62L6g94LwCClQxlV_TIGeJ-hqBS0x5A/viewform?usp=dialog" class="btn-primary" style="font-size:1.05rem;padding:17px 48px" target="_blank">Apply for Free →</a>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<section id="sponsor-list" style="padding-top:70px;padding-bottom:70px">
-  <div class="reveal">
-    <p class="section-label">^ sponsor list</p>
-    <h2 class="section-title">Sponsor List</h2>
-    <p class="section-desc">Current sponsor slots and availability.</p>
-  </div>
-  <div class="reveal" style="transition-delay:0.1s">
-    <ul style="margin-top:22px;padding:0;list-style:none;display:grid;gap:10px;max-width:720px">
-      <li style="padding:12px 14px;border:1px solid var(--border);border-radius:10px;background:var(--purple-ghost)">Platinum Sponsor - Available</li>
-      <li style="padding:12px 14px;border:1px solid var(--border);border-radius:10px;background:var(--purple-ghost)">Gold Sponsor - Available (3 slots)</li>
-      <li style="padding:12px 14px;border:1px solid var(--border);border-radius:10px;background:var(--purple-ghost)">Silver Sponsor - Available (4 slots)</li>
-      <li style="padding:12px 14px;border:1px solid var(--border);border-radius:10px;background:var(--purple-ghost)">Bronze Sponsor - Available (5 slots)</li>
-    </ul>
   </div>
 </section>
 
